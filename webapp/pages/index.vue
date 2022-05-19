@@ -108,12 +108,9 @@ import MoviesRepository from "~/Repositories/MoviesRepository";
 export default {
   name: 'IndexPage',
   methods: {
-    async getResult() {
-      const result = await this.$axios.$get(`https://api.themoviedb.org/3/search/movie?api_key=2b22e9de3ed842ea6bb39ee46e590a98&language=en-US&query=marvel&page=1&include_adult=false`);
-      console.log(result)
+    getResult() {
+      MoviesRepository.getMovies(this.$axios, "marvel").then((res) => console.log(res));
     }
   }
 }
-console.log("Before network call");
-// const response = MoviesRepository.getMovies("search");
 </script>
