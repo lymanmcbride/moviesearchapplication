@@ -7,7 +7,6 @@
     >
       <v-form
         ref="form"
-        v-model="valid"
         lazy-validation
       >
         <v-text-field
@@ -16,6 +15,7 @@
         ></v-text-field>
         <v-btn
           color="primary"
+          @click="getResult"
         >
           Search
         </v-btn>
@@ -107,8 +107,13 @@ import MoviesRepository from "~/Repositories/MoviesRepository";
 
 export default {
   name: 'IndexPage',
+  methods: {
+    async getResult() {
+      const result = await this.$axios.$get(`https://api.themoviedb.org/3/search/movie?api_key=2b22e9de3ed842ea6bb39ee46e590a98&language=en-US&query=marvel&page=1&include_adult=false`);
+      console.log(result)
+    }
+  }
 }
 console.log("Before network call");
-const response = MoviesRepository.getMovies("search");
-console.log(response);
+// const response = MoviesRepository.getMovies("search");
 </script>
