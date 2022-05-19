@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import axios, { AxiosResponse } from 'axios';
-
+import moviesService from "../services/movies.service";
+import MovieDataBaseRepository from "../repositories/MovieDataBaseRepository";
 interface Post {
     userId: Number;
     id: Number;
@@ -8,11 +9,10 @@ interface Post {
     body: String;
 }
 
-const getMovies = async (req: Request, res: Response, next: NextFunction) => {
-    let result: AxiosResponse = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=2b22e9de3ed842ea6bb39ee46e590a98&language=en-US&query=marvel&page=1&include_adult=false`);
-    let dataResult = result.data;
+const getMovies =  (req: Request, res: Response, next: NextFunction) => {
+    let result1 = moviesService.getMoviesInfo("marvel");
     return res.status(200).json({
-        message: dataResult
+        message: "worked"
     });
 };
 
