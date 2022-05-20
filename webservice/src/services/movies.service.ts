@@ -8,18 +8,19 @@ class MoviesService {
         let baseImageUrl: string;
         this.getBaseImageUrl().then((url) => baseImageUrl = url);
         return this.getMoviesData(searchParameter)
-            .then((movieDataBaseSearchResult: MovieDataBaseSearchResult) => this.mapToMovieSearchOutputArray(movieDataBaseSearchResult, baseImageUrl));
+            .then((movieDataBaseSearchResult: MovieDataBaseSearchResult) => MoviesService.mapToMovieSearchOutputArray(movieDataBaseSearchResult, baseImageUrl));
     };
 
     private getBaseImageUrl() {
         return MovieDataBaseRepository
             .getConfiguration()
             .then((configurationDto: ConfigurationDto) => Promise.resolve(`${configurationDto.images.secure_base_url}${configurationDto.images.logo_sizes[1]}`))
+            .catch(() => Promise.reject('Could not get configuration from Movie Database'));
     }
 
     private static mapToMovieSearchOutputArray(movieDataBaseSearchResult: MovieDataBaseSearchResult, baseImageUrl: string): MovieSearchOutputDto[] {
         let movieSearchOutput: MovieSearchOutputDto[] = [];
-        for (let i = 0; i < 10; i++){
+        for (let i = 0; i < 10; i++) {
             let movie = movieDataBaseSearchResult.results[i];
             movieSearchOutput.push({
                 movie_id: movie.id,
