@@ -1,6 +1,6 @@
 import MovieDataBaseRepository from "../repositories/MovieDataBaseRepository";
 import {MovieDataBaseSearchResult} from "../models/ExternalDtos/MovieDataBaseSearchResult";
-import {MovieInfo} from "../models/InternalDtos/MovieInfo";
+import {MovieSearchOutputDto} from "../models/InternalDtos/MovieSearchOutputDto";
 
 class MoviesService {
     public getMoviesInfo = (searchParameter: string) => {
@@ -8,8 +8,8 @@ class MoviesService {
             .then((movieDataBaseSearchResult: MovieDataBaseSearchResult) => this.mapToSingleMovieObject(movieDataBaseSearchResult));
     };
 
-    private mapToSingleMovieObject(movieDataBaseSearchResult: MovieDataBaseSearchResult): MovieInfo[] {
-        let movieSearchOutput: MovieInfo[] = [];
+    private mapToSingleMovieObject(movieDataBaseSearchResult: MovieDataBaseSearchResult): MovieSearchOutputDto[] {
+        let movieSearchOutput: MovieSearchOutputDto[] = [];
         for (let i = 0; i < 10; i++){
             let movie = movieDataBaseSearchResult.results[i];
             movieSearchOutput.push({
