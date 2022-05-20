@@ -9,10 +9,10 @@ interface Post {
     body: String;
 }
 
-const getMovies =  (req: Request, res: Response, next: NextFunction) => {
-    let result1 = moviesService.getMoviesInfo("marvel");
+const getMovies =  (searchParameter: string, res: Response) => {
+    let result1 = moviesService.getMoviesInfo(searchParameter);
     return res.status(200).json({
-        message: "worked"
+        message: result1
     });
 };
 
