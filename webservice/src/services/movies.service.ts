@@ -8,19 +8,25 @@ class MoviesService {
         let baseImageUrl: string;
         this.getBaseImageUrl().then((url) => baseImageUrl = url);
         return this.getMoviesData(searchParameter)
-            .then((movieDataBaseSearchResult: MovieDataBaseSearchResult) => MoviesService.mapToMovieSearchOutputArray(movieDataBaseSearchResult, baseImageUrl));
+            .then((movieDataBaseSearchResult: MovieDataBaseSearchResult) => this.mapToMovieSearchOutputArray(movieDataBaseSearchResult, baseImageUrl));
     };
 
     private getBaseImageUrl() {
         return MovieDataBaseRepository
             .getConfiguration()
-            .then((configurationDto: ConfigurationDto) => Promise.resolve(`${configurationDto.images.secure_base_url}${configurationDto.images.logo_sizes[1]}`))
-            .catch(() => Promise.reject('Could not get configuration from Movie Database'));
+            .then((configurationDto: ConfigurationDto) => Promise.resolve(this.createBaseImageUrl(configurationDto)));
     }
 
-    private static mapToMovieSearchOutputArray(movieDataBaseSearchResult: MovieDataBaseSearchResult, baseImageUrl: string): MovieSearchOutputDto[] {
+    private createBaseImageUrl(configurationDto: ConfigurationDto) {
+        return `${configurationDto.images.secure_base_url}${configurationDto.images.logo_sizes[1]}`;
+    }
+
+    private mapToMovieSearchOutputArray(movieDataBaseSearchResult: MovieDataBaseSearchResult, baseImageUrl: string): MovieSearchOutputDto[] {
         let movieSearchOutput: MovieSearchOutputDto[] = [];
         for (let i = 0; i < 10; i++) {
+            if (i >= movieDataBaseSearchResult.results.length) {
+                break;
+            }
             let movie = movieDataBaseSearchResult.results[i];
             movieSearchOutput.push({
                 movie_id: movie.id,
@@ -36,7 +42,6 @@ class MoviesService {
         return MovieDataBaseRepository
             .searchMovies(searchParameter)
             .then((searchResult: MovieDataBaseSearchResult) => Promise.resolve(searchResult))
-            .catch(() => Promise.reject("Could not get result from Movie Database"));
     }
 }
 
