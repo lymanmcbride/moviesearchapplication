@@ -20,19 +20,19 @@ Back-end server: `localhost:6060`
 
 The following list is not exhaustive, but these are the main features I've implemented
 in this repository
-###Front end:
+### Front end:
 - Form with submission button (using text input)
 - Api call to back end
 - Display of returned information
 
-###Back End:
+### Back End:
 - Api Endpoint with query parameters
 - Middleware enforcing required parameters
 - Asynchronous api calls
 - Custom Errors
 - Middleware to handle custom errors
 
-##Next Steps:
+## Next Steps:
 - Unit Tests on Back end: I started writing unit tests for the back end, but wasn't quite familiar enough with Mocha to finish. I've detailed out in the test file a few of the types of tests I would write for logic like this. 
   - I wish that I had more time to write these as I feel that writing good unit tests is one of my strengths. I will call out that I'm much faster writing them in C#
 - Front-end unit tests: I did not have time to write any front end unit tests. Here I would write tests that ensure that the components mount.
