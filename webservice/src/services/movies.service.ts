@@ -32,7 +32,7 @@ class MoviesService {
                 movie_id: movie.id,
                 title: movie.title,
                 poster_image: `${baseImageUrl}${movie.poster_path}`,
-                popularity_summary: `Popularity: ${movie.popularity}. Number of Votes: ${movie.vote_count}`
+                popularity_summary: `${movie.popularity} out of ${movie.vote_count}`
             })
         }
         return movieSearchOutput;
