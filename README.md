@@ -32,6 +32,8 @@ in this repository
 - Custom Errors
 - Middleware to handle custom errors
 
+[View Architectural Design](https://drive.google.com/file/d/1817yfaENMymtINkbMcgzn3fU2jI3j-77/view?usp=sharing)
+
 ## Next Steps:
 - Unit Tests on Back end: I started writing unit tests for the back end, but wasn't quite familiar enough with Mocha to finish. I've detailed out in the test file a few of the types of tests I would write for logic like this. 
   - I wish that I had more time to write these as I feel that writing good unit tests is one of my strengths. I will call out that I'm much faster writing them in C#
