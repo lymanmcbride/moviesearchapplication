@@ -32,7 +32,7 @@ in this repository
 - Custom Errors
 - Middleware to handle custom errors
 
-[View Architectural Design](https://drive.google.com/file/d/1817yfaENMymtINkbMcgzn3fU2jI3j-77/view?usp=sharing)
+[View Architectural Design](https://drive.google.com/file/d/1817yfaENMymtINkbMcgzn3fU2jI3j-77/view?usp=sharing) (This also could be updated and built out more. I created it before starting and didn't update before submitting)
 
 ## Next Steps:
 - Unit Tests on Back end: I started writing unit tests for the back end, but wasn't quite familiar enough with Mocha to finish. I've detailed out in the test file a few of the types of tests I would write for logic like this. 
